@@ -53,13 +53,12 @@ function generatePassword(haveUpCase, haveSpecial, charLength) {
         password += regular.charAt(Math.floor(Math.random() * regular.length))
     if (haveUpCase) {
         let randomUpCase = upCase.charAt(Math.floor(Math.random() * upCase.length))
-        password = randomUpCase + password.substring(1)
+        let randomIndex = Math.floor(Math.random() * charLength)
+        password = [password.slice(0, randomIndex), randomUpCase, password.slice(randomIndex)].join("")
     } if (haveSpecial) {
-        let ranSpecialChar = special.charAt(Math.floor(Math.random() * special.length))
-        password = password.slice(0, -1) + ranSpecialChar
+        let specialChar = special.charAt(Math.floor(Math.random() * special.length))
+        let randomIndex = Math.floor(Math.random() * charLength)
+        password = [password.slice(0, randomIndex), specialChar, password.slice(randomIndex)].join("")
     } 
     return password
 } 
- 
-
-
